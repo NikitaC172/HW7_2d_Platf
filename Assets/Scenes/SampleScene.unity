@@ -641,6 +641,11 @@ PrefabInstance:
       propertyPath: _speed
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: -2246803490754553533, guid: 32e082ee2b6e7bb45acd85a76b487ef3,
+        type: 3}
+      propertyPath: _route
+      value: 
+      objectReference: {fileID: 343530548}
     - target: {fileID: 2648384762844894946, guid: 32e082ee2b6e7bb45acd85a76b487ef3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1066,6 +1071,11 @@ PrefabInstance:
       propertyPath: _delayPoint
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -2246803490754553533, guid: 32e082ee2b6e7bb45acd85a76b487ef3,
+        type: 3}
+      propertyPath: _route
+      value: 
+      objectReference: {fileID: 1268977805}
     - target: {fileID: 2648384762844894946, guid: 32e082ee2b6e7bb45acd85a76b487ef3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2160,6 +2170,11 @@ PrefabInstance:
       propertyPath: _speed
       value: 1.15
       objectReference: {fileID: 0}
+    - target: {fileID: -2246803490754553533, guid: 32e082ee2b6e7bb45acd85a76b487ef3,
+        type: 3}
+      propertyPath: _route
+      value: 
+      objectReference: {fileID: 1443971704}
     - target: {fileID: 2648384762844894946, guid: 32e082ee2b6e7bb45acd85a76b487ef3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2250,6 +2265,11 @@ PrefabInstance:
       propertyPath: _delayPoint
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -2246803490754553533, guid: 32e082ee2b6e7bb45acd85a76b487ef3,
+        type: 3}
+      propertyPath: _route
+      value: 
+      objectReference: {fileID: 2028668526}
     - target: {fileID: 2648384762844894946, guid: 32e082ee2b6e7bb45acd85a76b487ef3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3238,6 +3258,11 @@ PrefabInstance:
       propertyPath: _delayPoint
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -2246803490754553533, guid: 32e082ee2b6e7bb45acd85a76b487ef3,
+        type: 3}
+      propertyPath: _route
+      value: 
+      objectReference: {fileID: 88390112}
     - target: {fileID: 2648384762844894946, guid: 32e082ee2b6e7bb45acd85a76b487ef3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3402,7 +3427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1342108266}
   m_Layer: 0
-  m_Name: Paths
+  m_Name: Routs
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 9becc394fda44db46ad1fbff4a9cfdcb, type: 3}
   m_NavMeshLayer: 0
@@ -4759,6 +4784,11 @@ PrefabInstance:
     - target: {fileID: -2246803490754553533, guid: 32e082ee2b6e7bb45acd85a76b487ef3,
         type: 3}
       propertyPath: _PatrolParent
+      value: 
+      objectReference: {fileID: 118030585}
+    - target: {fileID: -2246803490754553533, guid: 32e082ee2b6e7bb45acd85a76b487ef3,
+        type: 3}
+      propertyPath: _route
       value: 
       objectReference: {fileID: 118030585}
     - target: {fileID: 2648384762844894946, guid: 32e082ee2b6e7bb45acd85a76b487ef3,

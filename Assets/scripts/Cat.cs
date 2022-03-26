@@ -19,7 +19,7 @@ public class Cat : MonoBehaviour
     private AudioSource _meowSound = null;
     private AudioSource _eatSound = null;
     private Vector2 _speed;
-    private bool isJumpReady = true;
+    private bool _isJumpReady = true;
 
     private const string MoveAnimator = "speed";
     private const string JumpTrigger = "isJump";
@@ -50,9 +50,9 @@ public class Cat : MonoBehaviour
 
     private void Jump()
     {
-        if (isJumpReady)
+        if (_isJumpReady)
         {
-            isJumpReady = false;
+            _isJumpReady = false;
             _catRunWalk.SetTrigger(JumpTrigger);
             _cat.AddForce(Vector2.up * _forceJump);
         }
@@ -60,7 +60,7 @@ public class Cat : MonoBehaviour
 
     private void Jump(float x, float y)
     {
-        isJumpReady = false;
+        _isJumpReady = false;
         _catRunWalk.SetTrigger(JumpTrigger);
         _cat.AddForce(new Vector2(x, y) * _forceJump);
     }
@@ -69,13 +69,12 @@ public class Cat : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<Platform>(out Platform platform) && Input.GetKey(KeyCode.UpArrow) == false)
         {
-            isJumpReady = true;
+            _isJumpReady = true;
         }
 
         if (collision.gameObject.TryGetComponent<Sausage>(out Sausage sausage))
         {
             _eatSound.Play();
-            sausage.Remove();
         }
 
         if (collision.gameObject.TryGetComponent<Human>(out Human human))
@@ -109,7 +108,7 @@ public class Cat : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<Platform>(out Platform platform))
         {
-            isJumpReady = false;
+            _isJumpReady = false;
         }
     }
 

@@ -7,22 +7,30 @@ using UnityEngine;
 public class Sausage : MonoBehaviour
 {
     private Spawner _spawner = null;
-    private AudioSource instantiateSound = null;
-
-    public void Remove()
-    {        
-        _spawner.ReduceAmount();
-        Destroy(gameObject);
-    }
+    private AudioSource _instantiateSound = null;
 
     public void GetSpawner(Spawner spawner)
     {
         _spawner = spawner;
     }
 
+    private void Remove()
+    {        
+        _spawner.ReduceAmount();
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<Cat>(out Cat cat))
+        {
+            Remove();
+        }
+    }
+
     private void Awake()
     {
-        instantiateSound = GetComponent<AudioSource>();
-        instantiateSound.Play();
+        _instantiateSound = GetComponent<AudioSource>();
+        _instantiateSound.Play();
     }
 }

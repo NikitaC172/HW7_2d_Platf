@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 public class Human : MonoBehaviour
 {
-    [SerializeField] private GameObject _PatrolParent = null;
+    [SerializeField] private GameObject _route = null;
     [SerializeField] private float _speed = 1f;
     [SerializeField] private int _delayPoint = 5;
 
@@ -25,9 +25,17 @@ public class Human : MonoBehaviour
     private void OnEnable()
     {
         _humanRender= GetComponent<SpriteRenderer>();
-        _points = _PatrolParent.GetComponentsInChildren<Transform>();
+        _points = _route.GetComponentsInChildren<Transform>();
         _humanWalk = GetComponent<Animator>();
         StartCoroutine(Patrol(_delayPoint));
+    }
+
+    private void SetFlip(Transform target)
+    {
+        _isMove = true;
+        _humanWalk.SetFloat(MoveAnimator, (transform.position - target.position).x);
+
+        _humanRender.flipX = (transform.position.x - target.position.x > 0) ? true : false;
     }
 
     private IEnumerator Patrol(int delayPoint)
@@ -40,17 +48,7 @@ public class Human : MonoBehaviour
 
             if (_isMove==false)
             {
-                _isMove = true;
-                _humanWalk.SetFloat(MoveAnimator, (transform.position - target.position).x);
-
-                if (transform.position.x - target.position.x > 0)
-                {
-                    _humanRender.flipX = true;
-                }
-                else
-                {
-                    _humanRender.flipX = false;
-                }
+                SetFlip(target);
             }            
 
             if (transform.position.x == target.position.x)

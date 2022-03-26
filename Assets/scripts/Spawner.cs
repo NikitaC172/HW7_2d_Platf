@@ -11,6 +11,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private EatenSausageCounter _countSausage = null;
     [SerializeField] private float _timeBetweenSpawn = 5f;
     [SerializeField] private int _amountSausages = 3;
+
     private Spawner _spawner = null;
     private int _currentNumberSausages = 0;
 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(AudioSource))]
 
 public class Cat : MonoBehaviour
@@ -14,16 +13,12 @@ public class Cat : MonoBehaviour
 
     private Rigidbody2D _cat = null;
     private Animator _catRunWalk = null;
-    private SpriteRenderer _catRender = null;
     private AudioSource[] _sounds = null;
     private AudioSource _meowSound = null;
     private AudioSource _eatSound = null;
-    private Vector2 _speed;
     private bool _isJumpReady = true;
 
-    private const string MoveAnimator = "speed";
     private const string JumpTrigger = "isJump";
-    private const string JumpAnimator = "jump";
     private const string AxisX = "Horizontal";
 
     private void FixedUpdate()
@@ -37,15 +32,6 @@ public class Cat : MonoBehaviour
         {
             Jump();
         }
-
-        Animate();
-    }
-
-    private void Animate()
-    {
-        _speed = _cat.velocity;
-        _catRunWalk.SetFloat(JumpAnimator, _speed.y);
-        _catRunWalk.SetFloat(MoveAnimator, Mathf.Abs(_speed.x));
     }
 
     private void Jump()
@@ -114,18 +100,7 @@ public class Cat : MonoBehaviour
 
     private void MoveX()
     {
-        float error = 0.1f;
         _cat.AddForce(Vector2.right * _forceMoveX * Input.GetAxis(AxisX));
-
-        if (_speed.x > error && _catRender.flipX == true)
-        {
-            _catRender.flipX = false;
-        }
-
-        if (_speed.x < -error && _catRender.flipX == false)
-        {
-            _catRender.flipX = true;
-        }
     }
 
     private void Awake()
@@ -133,8 +108,6 @@ public class Cat : MonoBehaviour
         _sounds = GetComponents<AudioSource>();
         _catRunWalk = GetComponent<Animator>();
         _cat = GetComponent<Rigidbody2D>();
-        _catRender = GetComponent<SpriteRenderer>();
-        Vector2 _speed = _cat.velocity;
         _meowSound = _sounds[1];
         _eatSound = _sounds[0];
     }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class Sausage : MonoBehaviour
 {
     private Spawner _spawner = null;
-    private AudioSource _instantiateSound = null;
+    private AudioSource _emergenceSound = null;
 
     public void GetSpawner(Spawner spawner)
     {
@@ -30,7 +30,7 @@ public class Sausage : MonoBehaviour
 
     private void Awake()
     {
-        _instantiateSound = GetComponent<AudioSource>();
-        _instantiateSound.Play();
+        _emergenceSound = GetComponent<AudioSource>();
+        _emergenceSound.Play();
     }
 }

@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\scripts\Cat.cs" />
+    <Compile Include="Assets\scripts\CatAnimation.cs" />
     <Compile Include="Assets\scripts\EatenSausageCounter.cs" />
     <Compile Include="Assets\scripts\Human.cs" />
     <Compile Include="Assets\scripts\Platform.cs" />

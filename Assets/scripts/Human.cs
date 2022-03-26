@@ -14,6 +14,7 @@ public class Human : MonoBehaviour
 
     private Animator _humanWalk = null;
     private Transform[] _points = null;
+    private Transform _target = null;
     private SpriteRenderer _humanRender = null;
     private int _currentPoint = FirstPoint;
     private bool _isMove = false;
@@ -24,18 +25,39 @@ public class Human : MonoBehaviour
 
     private void OnEnable()
     {
-        _humanRender= GetComponent<SpriteRenderer>();
+        _humanRender = GetComponent<SpriteRenderer>();
         _points = _route.GetComponentsInChildren<Transform>();
         _humanWalk = GetComponent<Animator>();
         StartCoroutine(Patrol(_delayPoint));
     }
 
-    private void SetFlip(Transform target)
+    private void SetFlip()
     {
-        _isMove = true;
-        _humanWalk.SetFloat(MoveAnimator, (transform.position - target.position).x);
+        if (_isMove == false)
+        {
+            _isMove = true;
+            _humanWalk.SetFloat(MoveAnimator, (transform.position - _target.position).x);
 
-        _humanRender.flipX = (transform.position.x - target.position.x > 0) ? true : false;
+            _humanRender.flipX = (transform.position.x - _target.position.x > 0);
+        }
+    }
+
+    private void SetNextTargetPoint()
+    {
+        _humanWalk.SetFloat(MoveAnimator, 0);
+        _currentPoint++;
+        _isMove = false;
+
+        if (_currentPoint >= _points.Length)
+        {
+            _currentPoint = FirstPoint;
+        }
+    }
+
+    private void MoveToTargetPoint()
+    {
+        _target = _points[_currentPoint];
+        transform.position = Vector2.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime);
     }
 
     private IEnumerator Patrol(int delayPoint)
@@ -43,25 +65,13 @@ public class Human : MonoBehaviour
         while (true)
         {
             var waitSeconds = new WaitForSeconds(delayPoint);
-            Transform target = _points[_currentPoint];
-            transform.position = Vector2.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
+            MoveToTargetPoint();
+            SetFlip();
 
-            if (_isMove==false)
+            if (transform.position.x == _target.position.x)
             {
-                SetFlip(target);
-            }            
-
-            if (transform.position.x == target.position.x)
-            {
-                _humanWalk.SetFloat(MoveAnimator, (transform.position - target.position).x);
-                _currentPoint++;
-                _isMove = false;
+                SetNextTargetPoint();
                 yield return waitSeconds;
-
-                if (_currentPoint >= _points.Length)
-                {
-                    _currentPoint = FirstPoint;
-                }
             }
 
             yield return null;
